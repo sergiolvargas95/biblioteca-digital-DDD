@@ -5,6 +5,7 @@ import co.edu.udec.bibliotecaDigital.domain.events.DomainEvent;
 import co.edu.udec.bibliotecaDigital.domain.events.PrestamoVencidoEvent;
 import co.edu.udec.bibliotecaDigital.domain.model.entities.Libro;
 import co.edu.udec.bibliotecaDigital.domain.model.entities.Usuario;
+import co.edu.udec.bibliotecaDigital.domain.services.EstrategiaDuracionPrestamo;
 import co.edu.udec.bibliotecaDigital.domain.valueObjects.EstadoPrestamoVO;
 import co.edu.udec.bibliotecaDigital.domain.valueObjects.FechaDevolucion;
 import co.edu.udec.bibliotecaDigital.domain.valueObjects.FechaPrestamo;
@@ -23,7 +24,7 @@ public class Prestamo {
     private EstadoPrestamoVO estado;
     private final List<DomainEvent> domainEvents = new ArrayList<>();
 
-    public Prestamo(Long id, Usuario usuario, Libro libro, FechaPrestamo fechaPrestamo, FechaDevolucion fechaDevolucion, EstadoPrestamoVO estado) {
+    public Prestamo(Long id, Usuario usuario, Libro libro, FechaPrestamo fechaPrestamo, EstrategiaDuracionPrestamo estrategiaDuracion) {
         if(usuario == null) {
             throw new IllegalArgumentException("El préstamo debe tener un usuario");
         }
@@ -36,8 +37,8 @@ public class Prestamo {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaPrestamo = fechaPrestamo;
-        this.fechaDevolucion = fechaDevolucion;
-        this.estado = estado;
+        this.fechaDevolucion = estrategiaDuracion.calcularFechaDevolucion(fechaPrestamo);;
+        this.estado = new EstadoPrestamoVO(EstadoPrestamo.ACTIVO);
     }
 
     public Long getId() {
