@@ -1,5 +1,7 @@
 package co.edu.udec.bibliotecaDigital.domain.model.entities;
 
+import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
+
 public class Autor {
     private final Long id;
     private final String primerNombre;
@@ -10,15 +12,15 @@ public class Autor {
 
     public Autor(Long id, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String nacionalidad) {
         if(primerNombre == null || primerNombre.isBlank()) {
-            throw new IllegalArgumentException("El primer nombre no puede estar vacío");
+            throw new TextoInvalidoException("primer nombre");
         }
 
         if(primerApellido == null || primerApellido.isBlank()) {
-            throw new IllegalArgumentException("El primer apellido no puede estar vacío");
+            throw new TextoInvalidoException("primer apellido");
         }
 
         if(nacionalidad == null || nacionalidad.isBlank()) {
-            throw new IllegalArgumentException("La nacionalidad no puede estar vacía");
+            throw new TextoInvalidoException("nacionalidad");
         }
 
         this.id = id;

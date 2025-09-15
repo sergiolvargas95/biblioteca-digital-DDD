@@ -1,5 +1,8 @@
 package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 
+import co.edu.udec.bibliotecaDigital.domain.exceptions.FechaInvalidaException;
+import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
+
 import java.time.LocalDateTime;
 
 public class FechaPrestamo {
@@ -7,11 +10,11 @@ public class FechaPrestamo {
 
     public FechaPrestamo(LocalDateTime date) {
         if(date == null) {
-            throw new IllegalArgumentException("La fecha de prestamo no puede estar vacía.");
+            throw new TextoInvalidoException("fecha de prestamo");
         }
 
         if(!date.toLocalDate().isEqual(LocalDateTime.now().toLocalDate())) {
-            throw new IllegalArgumentException("La fecha de préstamo debe ser el día de hoy");
+            throw new FechaInvalidaException("fecha de préstamo", "debe ser el día de hoy");
         }
 
         this.date = date;

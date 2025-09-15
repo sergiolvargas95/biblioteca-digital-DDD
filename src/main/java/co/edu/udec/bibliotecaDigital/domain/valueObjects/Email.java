@@ -1,15 +1,18 @@
 package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 
+import co.edu.udec.bibliotecaDigital.domain.exceptions.EmailInvalidoException;
+import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
+
 public class Email {
     private final String email;
 
     public Email(String email) {
         if(email == null || email.isBlank()) {
-            throw new IllegalArgumentException("El email no puede estar vacio");
+            throw new TextoInvalidoException("email");
         }
 
         if(email.indexOf('@') <= 0) {
-            throw new IllegalArgumentException("El email debe ser válido");
+            throw new EmailInvalidoException(email);
         }
         this.email = email;
     }
