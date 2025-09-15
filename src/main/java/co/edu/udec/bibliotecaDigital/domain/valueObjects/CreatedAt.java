@@ -1,5 +1,8 @@
 package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 
+import co.edu.udec.bibliotecaDigital.domain.exceptions.FechaInvalidaException;
+import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
+
 import java.time.LocalDateTime;
 
 public class CreatedAt {
@@ -7,11 +10,11 @@ public class CreatedAt {
 
     public CreatedAt(LocalDateTime date) {
         if(date == null) {
-            throw new IllegalArgumentException("La fecha de creación no puede ser nula");
+            throw new TextoInvalidoException("fecha de creación");
         }
 
         if(date.isAfter(LocalDateTime.now())) {
-            throw new IllegalArgumentException("La fecha de creación no puede ser posterior a la fecha de hoy");
+            throw new FechaInvalidaException("fecha de creación", "no puede ser posterior a la fecha de hoy");
         }
 
         this.date = date;

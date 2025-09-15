@@ -1,13 +1,14 @@
 package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 
 import co.edu.udec.bibliotecaDigital.domain.enums.EstadoPrestamo;
+import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
 
 public class EstadoPrestamoVO {
     private final EstadoPrestamo estado;
 
     public EstadoPrestamoVO(EstadoPrestamo estado) {
         if(estado == null) {
-            throw new IllegalArgumentException("El estado no puede ser nulo");
+            throw new TextoInvalidoException("estado");
         }
         this.estado = estado;
     }

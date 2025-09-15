@@ -1,5 +1,8 @@
 package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 
+import co.edu.udec.bibliotecaDigital.domain.exceptions.FechaInvalidaException;
+import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
+
 import java.time.LocalDateTime;
 
 public class FechaDevolucion {
@@ -7,11 +10,11 @@ public class FechaDevolucion {
 
     public FechaDevolucion(LocalDateTime date, LocalDateTime fechaPrestamo) {
         if(date == null) {
-            throw new IllegalArgumentException("La fecha de devolución no puede estar vacía.");
+            throw new TextoInvalidoException("fecha de devolución");
         }
 
         if(date.isBefore(fechaPrestamo)) {
-            throw new IllegalArgumentException("La fecha de devolución no puede ser anterior a la fecha de préstamo");
+            throw new FechaInvalidaException("fecha de devolución","no puede ser anterior a la fecha de préstamo");
         }
 
         this.date = date;
