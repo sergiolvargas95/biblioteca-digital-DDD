@@ -1,17 +1,41 @@
 # Biblioteca Digital — Capa de Dominio (DDD + Hexagonal)
 
 ## Estructura de paquetes
+
 co.edu.udec.bibliotecaDigital.domain
-├─ model
-│  ├─ entities        (Usuario, Libro, Autor)
-│  ├─ aggregates      (Prestamo)
-│  └─ valueObjects    (Email, ISBN, FechaPrestamo, FechaDevolucion, NumeroPaginas, TituloLibro)
-├─ events             (DomainEvent, PrestamoVencidoEvent)
-├─ exceptions         (DomainException, EmailInvalidoException, PrestamoNoPermitidoException, ...)
-├─ services           (EstrategiaDuracionPrestamo, implementaciones)
-├─ factories          (LibroFactory, PrestamoFactory)
-├─ specifications     (Specification, UsuarioPuedePedirPrestamoSpecification)
-└─ ports              (in/out si aplica)
+- model  
+  - entities  
+    - Usuario  
+    - Libro  
+    - Autor  
+  - aggregates  
+    - Prestamo  
+  - valueObjects  
+    - Email  
+    - ISBN  
+    - FechaPrestamo  
+    - FechaDevolucion  
+    - NumeroPaginas  
+    - TituloLibro  
+- events  
+  - DomainEvent  
+  - PrestamoVencidoEvent  
+- exceptions  
+  - DomainException  
+  - EmailInvalidoException  
+  - PrestamoNoPermitidoException  
+  - ...  
+- services  
+  - EstrategiaDuracionPrestamo  
+  - implementaciones  
+- factories  
+  - LibroFactory  
+  - PrestamoFactory  
+- specifications  
+  - Specification  
+  - UsuarioPuedePedirPrestamoSpecification  
+- ports  
+  - in/out (si aplica)  
 
 ## Patrones aplicados
 - Factory: para creación consistente de entidades con VOs.
