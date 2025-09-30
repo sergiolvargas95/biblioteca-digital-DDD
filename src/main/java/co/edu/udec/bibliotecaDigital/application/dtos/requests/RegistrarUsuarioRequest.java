@@ -1,4 +1,4 @@
-package co.edu.udec.bibliotecaDigital.application.DTOs.requests;
+package co.edu.udec.bibliotecaDigital.application.dtos.requests;
 
 
 public final class RegistrarUsuarioRequest {
