@@ -1,6 +1,6 @@
 package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 
-import java.time.LocalDate;
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class UpdatedAt {

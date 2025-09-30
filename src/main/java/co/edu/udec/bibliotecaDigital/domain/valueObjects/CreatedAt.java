@@ -3,6 +3,7 @@ package co.edu.udec.bibliotecaDigital.domain.valueObjects;
 import co.edu.udec.bibliotecaDigital.domain.exceptions.FechaInvalidaException;
 import co.edu.udec.bibliotecaDigital.domain.exceptions.TextoInvalidoException;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class CreatedAt {
