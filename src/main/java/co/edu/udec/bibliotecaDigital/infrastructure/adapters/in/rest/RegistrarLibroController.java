@@ -1,40 +1,38 @@
 package co.edu.udec.bibliotecaDigital.infrastructure.adapters.in.rest;
 
-
 import co.edu.udec.bibliotecaDigital.application.ports.in.RegistrarLibroUseCase;
+import co.edu.udec.bibliotecaDigital.domain.model.entities.Autor;
+import co.edu.udec.bibliotecaDigital.domain.model.entities.Libro;
+import co.edu.udec.bibliotecaDigital.domain.valueObjects.Isbn;
+import co.edu.udec.bibliotecaDigital.domain.valueObjects.NumeroPaginas;
+import co.edu.udec.bibliotecaDigital.domain.valueObjects.TituloLibro;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
 
-public class CrearLibroController implements HttpHandler {
+//Ejemplo y simulación con entrada vía HTTP
+public class RegistrarLibroController implements HttpHandler {
     private final RegistrarLibroUseCase useCase;
 
-    public RegistrarLibroController(RegistrarLibroUseCase useCase) {
-        this.useCase = useCase;
+    public RegistrarLibroController(RegistrarLibroUseCase registrarLibroUseCase) {
+        this.useCase = registrarLibroUseCase;
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         if("POST".equals(exchange.getRequestMethod())) {
-            String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+            Libro libro = new Libro(
+                    1L,
+                    new TituloLibro("Cien años de soledad"),
+                    new NumeroPaginas(500),
+                    new Isbn("asdfasdfasdff"),
+                    new Autor(1L, "Gabriel", "", "Garcia", "Marquez", "Colombiano")
+            );
 
-            String[] params = body.split("&");
-            String nombre = params[0].split("=")[1];
-            String email = params[1].split("=")[1];
+            useCase.registrarLibro(libro);
 
-            Long idUsuario = useCase.registrarLibro(nombre, email);
-
-            String response = "{ \"idUsuario\": " + idUsuario + " }";
-            exchange.sendResponseHeaders(201, response.getBytes().length);
-
-            try(OutputStream os = exchange.getResponseBody()) {
-                os.write(response.getBytes());
-            }
+            System.out.println("Libro registrado correctamente.");
         }
-
-
     }
 }

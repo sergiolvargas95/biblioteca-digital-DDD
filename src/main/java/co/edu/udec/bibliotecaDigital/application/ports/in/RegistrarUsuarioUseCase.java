@@ -1,12 +1,7 @@
 package co.edu.udec.bibliotecaDigital.application.ports.in;
 
-import co.edu.udec.bibliotecaDigital.application.DTOs.requests.RegistrarUsuarioRequest;
+import co.edu.udec.bibliotecaDigital.domain.model.entities.Usuario;
 
 public interface RegistrarUsuarioUseCase {
-    Long registrarUsuario(String primerNombre,
-                          String segundoNombre,
-                          String primerApellido,
-                          String segundoApellido,
-                          String email,
-                          String password);
+    void registrarUsuario(Usuario usuario);
 }
