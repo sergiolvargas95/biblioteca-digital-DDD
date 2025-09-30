@@ -1,5 +1,6 @@
 package co.edu.udec.bibliotecaDigital.infrastructure.adapters.in.rest;
 
+import co.edu.udec.bibliotecaDigital.application.dtos.UsuarioDto;
 import co.edu.udec.bibliotecaDigital.application.ports.in.RegistrarUsuarioUseCase;
 import co.edu.udec.bibliotecaDigital.domain.model.entities.Usuario;
 import co.edu.udec.bibliotecaDigital.domain.valueObjects.Email;
@@ -21,6 +22,16 @@ public class RegistrarUsuarioController implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         if("POST".equals(exchange.getRequestMethod())) {
+            UsuarioDto usuarioDto = new UsuarioDto(
+                    "secure123",
+                    "Juan",
+                    "Carlos",
+                    "Pérez",
+                    "López",
+                    "juan@test.com",
+                    1L
+            );
+
             Usuario usuario = new Usuario(
                     1L,
                     "Juan",
@@ -33,7 +44,7 @@ public class RegistrarUsuarioController implements HttpHandler {
                     null
             );
 
-            useCase.registrarUsuario(usuario);
+            useCase.registrarUsuario(usuarioDto);
 
             String response = "Usuario registrado correctamente.";
 

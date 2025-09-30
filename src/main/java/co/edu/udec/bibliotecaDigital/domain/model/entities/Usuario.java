@@ -80,6 +80,4 @@ public class Usuario {
                 primerApellido + " " +
                 (segundoApellido != null ? segundoApellido : "")).trim();
     }
-
-
 }

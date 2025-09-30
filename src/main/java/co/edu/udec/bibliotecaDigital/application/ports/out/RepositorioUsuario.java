@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RepositorioUsuario {
-    void guardar(Usuario usuario);
+    Usuario guardar(Usuario usuario);
     Usuario buscarPorEmail(Email email);
     Usuario buscarPorId(Long id);
 }

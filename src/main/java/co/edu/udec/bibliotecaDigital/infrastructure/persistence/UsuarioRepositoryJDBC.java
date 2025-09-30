@@ -13,7 +13,7 @@ public class UsuarioRepositoryJDBC implements RepositorioUsuario {
     private final String password = "";
 
     @Override
-    public void guardar(Usuario usuario) {
+    public Usuario guardar(Usuario usuario) {
         try(Connection conn = DriverManager.getConnection(url, user, password)) {
             String sql = "INSERT INTO usuarios(id, primero_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, password, created_at, updated_at" +
                     "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -29,6 +29,10 @@ public class UsuarioRepositoryJDBC implements RepositorioUsuario {
             ps.setString(7, usuario.getPassword().getPassword());
             ps.setTimestamp(8, java.sql.Timestamp.valueOf(usuario.getCreatedAt().getDate()));
             ps.setTimestamp(9, java.sql.Timestamp.valueOf(usuario.getUpdatedAt().getDate()));
+
+            ps.executeUpdate();
+
+            return usuario;
         } catch (Exception e) {
             throw new RuntimeException("Error al guardar el usuario en la base de datos", e);
         }
