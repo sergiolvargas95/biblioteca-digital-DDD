@@ -12,4 +12,8 @@ public class NumeroPaginas {
 
         this.paginas = paginas;
     }
+
+    public int getPaginas() {
+        return paginas;
+    }
 }

@@ -20,4 +20,5 @@ public class EmailTest {
                 .isInstanceOf(EmailInvalidoException.class)
                 .hasMessage("El email proporcionado es inválido: usuariotest.com");
     }
+
 }

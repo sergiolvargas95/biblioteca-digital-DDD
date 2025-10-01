@@ -17,4 +17,8 @@ public class TituloLibro {
 
         this.titulo = titulo;
     }
+
+    public String getTitulo() {
+        return titulo;
+    }
 }
