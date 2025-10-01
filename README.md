@@ -1,4 +1,4 @@
-# Biblioteca Digital — Capa de Dominio (DDD + Hexagonal)
+# Biblioteca Digital — (DDD + Hexagonal)
 
 ## Estructura de paquetes
 
