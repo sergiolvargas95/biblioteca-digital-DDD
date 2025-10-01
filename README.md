@@ -33,9 +33,22 @@ co.edu.udec.bibliotecaDigital.domain
   - PrestamoFactory  
 - specifications  
   - Specification  
-  - UsuarioPuedePedirPrestamoSpecification  
-- ports  
-  - in/out (si aplica)  
+  - UsuarioPuedePedirPrestamoSpecification
+- Infraestructure
+  - adapters 
+    - in.rest:
+      - RegistrarLibroController
+      - RegistrarUsuarioController  
+- application
+  - serivces
+    - RegistrarUsuarioService      
+  - ports  
+    - in:
+      - RegistrarLibroUseCase
+      - RegistrarUsuarioUseCase
+    - on:
+      - RepositorioLibro
+      - RepositorioUsuario      
 
 ## Patrones aplicados
 - Factory: para creación consistente de entidades con VOs.
